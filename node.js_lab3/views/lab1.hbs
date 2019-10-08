@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лабораторна робота №1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/sticky-footer.css">
+</head>
+<body>
+    {{> header}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="col-sm-12">Лабораторна робота №1<br>Умовна конструкція if...else</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 mb-2">
+                        <div class="list-group text-center" id="list-tab" role="tablist">
+                            <a href="/lab1" class="list-group-item list-group-item-action active" id="list-lab1-item">Лабораторна робота №1</a>
+                            <a href="/lab2" class="list-group-item list-group-item-action" id="list-lab2-item">Лабораторна робота №2</a>
+                            <a href="/lab3" class="list-group-item list-group-item-action" id="list-lab3-item">Лабораторна робота №3</a>
+                            <a href="/lab4" class="list-group-item list-group-item-action" id="list-lab4-item">Лабораторна робота №4</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        <form id="calculationsForm" action="/lab1" method="POST">
+                            <div class="form-group">
+                                <label for="variableX">Введіть X</label>
+                                <input type="number" class="form-control {{#if errors.variableX}}is-invalid{{/if}}" id="variableX" name="variableX" value="{{variableX}}" placeholder="Введіть X" required>
+                                <div class="invalid-feedback">
+                                    {{errors.variableX}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="variableY">Введіть Y</label>
+                                <input type="number" class="form-control {{#if errors.variableY}}is-invalid{{/if}}" id="variableY" name="variableY" value="{{variableY}}" placeholder="Введіть Y" required>
+                                <div class="invalid-feedback">
+                                    {{errors.variableY}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="variableZ">Введіть Z</label>
+                                <input type="number" class="form-control {{#if errors.variableZ}}is-invalid{{/if}}" id="variableZ" name="variableZ" value="{{variableZ}}" placeholder="Введіть Z" required>
+                                <div class="invalid-feedback">
+                                    {{errors.variableZ}}
+                                </div>
+                            </div>
+                            <input type="submit" id="calculateBtn" class="btn btn-success" value="Розрахувати"/>
+                        </form>
+                        <div class="mt-2">
+                            <h4>Результат</h4>
+                            <p class="lead" id="result">
+                                {{~#if result~}}
+                                    {{variant}} = {{roundNumber 4 result}}
+                                {{/if}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>
