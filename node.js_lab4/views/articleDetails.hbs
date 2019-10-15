@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{article.title}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/sticky-footer.css">
+</head>
+<body>
+    {{> header}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 mb-2">
+                        <h4 class="display-4 text-center">Меню</h4>
+                        <div class="list-group text-center" id="list-tab" role="tablist">
+                            <a href="/articles" class="list-group-item list-group-item-action active" id="list-lab1-item">Статті</a>
+                            <a href="/about" class="list-group-item list-group-item-action" id="list-lab1-item">Про автора</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        <div class="text-center">
+                            <h1 class="display-4 col-sm-12">{{article.title}}</h1>
+                        </div>
+                        <p class="lead">{{article.text}}</p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 text-md-left">
+                                Автор: {{article.author}}
+                            </div>
+                            <div class="col-sm-12 col-md-6 text-md-right">
+                                {{formatDate article.date}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "nodejs_lab4",
+  "version": "1.0.0",
+  "dependencies": {
+    "dateformat": "^3.0.3",
+    "express": "^4.17.1",
+    "hbs": "^4.0.5",
+    "mongodb": "^3.3.2"
+  }
+}
