@@ -10,7 +10,7 @@ class ArticleDAO {
     }
 
     findAll() {
-        const articles = this.collection.find().toArray();
+        const articles = this.collection.find().sort({date: -1}).toArray();
         return articles;
     }
 
@@ -18,6 +18,28 @@ class ArticleDAO {
         const objectId = new ObjectId(id);
         const article = this.collection.findOne({_id: objectId});
         return article;
+    }
+
+    insert(article) {
+        this.collection.insertOne(article);
+    }
+
+    insertMany(articles) {
+        this.collection.insertMany(articles);
+    }
+
+    update(article) {
+        const objectId = new ObjectId(article._id);
+        this.collection.updateOne(
+            {_id: objectId},
+            { $set: {'title': article.title, 'description': article.description,
+            'text': article.text, 'author': article.author}}
+        );
+    }
+
+    delete(id) {
+        const objectId = new ObjectId(id);
+        this.collection.deleteOne({_id: objectId});
     }
 
 }

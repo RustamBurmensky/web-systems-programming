@@ -15,6 +15,24 @@ class ArticleService {
         return this.articleDAO.findById(id);
     }
 
+    insert(article) {
+        article.date = new Date();
+        this.articleDAO.insert(article);
+    }
+
+    insertMany(articles) {
+        articles.forEach(article => article.date = new Date());
+        this.articleDAO.insertMany(articles);
+    }
+
+    update(article) {
+        this.articleDAO.update(article);
+    }
+
+    delete(id) {
+        this.articleDAO.delete(id);
+    }
+
 }
 
 module.exports.ArticleService = ArticleService;
