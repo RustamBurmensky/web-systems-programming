@@ -1,0 +1,11 @@
+{
+    "port": 80,
+    "db": {
+        "name": "mobile_shop",
+        "url": "mongodb://localhost:27017/",
+        "options": {
+            "useNewUrlParser": true,
+            "useUnifiedTopology": true
+        }
+    }
+}

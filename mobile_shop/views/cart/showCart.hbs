@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Кошик</title>
+</head>
+<body>
+    {{> shopHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Кошик</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{#if session.cartContent}}
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Назва</th>
+                                        <th>Ціна, грн</th>
+                                        <th>Кількість</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each session.cartContent}}
+                                        <tr>
+                                            <td>
+                                                <form action="/cart/removeItemRow" method="POST" class="float-right">
+                                                    <input type="hidden" name="productId" value="{{this.product._id}}"/>
+                                                    <button type="submit" class="btn btn-danger p-1">
+                                                        <i class="material-icons">delete</i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>{{this.product.name}}</td>
+                                            <td>{{this.product.price}}</td>
+                                            <td class="text-center">
+                                                <form action="/cart/removeItem" method="POST" class="float-left">
+                                                    <input type="hidden" name="productId" value="{{this.product._id}}"/>
+                                                    <button type="submit" class="btn btn-success p-1">
+                                                        <i class="material-icons">remove</i>
+                                                    </button>
+                                                </form>
+                                                <p class="lead">{{this.count}}</p>
+                                                <form action="/cart/addItem" method="POST" class="float-right">
+                                                    <input type="hidden" name="productId" value="{{this.product._id}}"/>
+                                                    <button type="submit" class="btn btn-success p-1">
+                                                        <i class="material-icons">add</i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                            <div class="text-right">
+                                <p class="lead">
+                                    Разом: <strong>{{getTotalCartPrice session.cartContent}} грн</strong>
+                                </p>
+                                <a href="/order/new" class="btn btn-success">Підтвердити</a>
+                            </div>
+                            
+                        {{/if}}
+                        {{#unless session.cartContent}}
+                        <div class="alert alert-secondary text-center" role="alert">
+                            Кошик пустий
+                        </div>
+                        {{/unless}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+    <script type="text/javascript" src="/js/cart.js"></script>
+</body>
+</html>

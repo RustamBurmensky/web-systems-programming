@@ -1,0 +1,49 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Mobilex</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://mobilex.com">Магазин</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://blog.mobilex.com">Блог</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://mobilex.com/about">Про розробника</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                {{#if session.user}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">{{session.user.firstName}} {{session.user.lastName}}</a>
+                </li>
+                {{/if}}
+                {{#unless session.user}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Увійти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/registration">Реєстрація</a>
+                </li>
+                {{/unless}}
+                <li class="nav-item">
+                    <a class="btn btn-outline-light mr-2 mb-1" href="/cart">
+                        <i class="material-icons">shopping_cart</i>
+                        <span class="badge" id="cartTotalCount">{{getCartTotalCount session.cartContent}}</span>
+                    </a>
+                </li>
+                {{#if session.user}}
+                <li class="nav-item">
+                    <form action="/logout" method="POST">
+                        <button type="submit" class="btn btn-outline-light"><i class="material-icons">exit_to_app</i></button>
+                    </form>
+                </li>
+                {{/if}}
+            </ul>
+        </div>
+    </nav>
+</header>

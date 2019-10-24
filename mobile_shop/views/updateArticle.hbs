@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Редагувати статтю</title>
+</head>
+<body>
+    {{> header}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Редагувати статтю</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 mb-2">
+                        <h4 class="display-4 text-center">Меню</h4>
+                        <div class="list-group text-center" id="list-tab" role="tablist">
+                            <a href="/articles" class="list-group-item list-group-item-action">Статті</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        <form action="/articles/update" method="POST">
+                            <input type="hidden" name="id" value="{{article._id}}"/>
+                            <div class="form-group">
+                                <label for="title">Заголовок статті</label>
+                                <input type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}"
+                                    id="title" name="title" value="{{article.title}}" maxlength="50"
+                                    placeholder="Введіть заголовок статті" required>
+                                <div class="invalid-feedback">
+                                    {{errors.title.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Опис статті</label>
+                                <textarea class="form-control {{#if errors.description}}is-invalid{{/if}}"
+                                    id="description" name="description" maxlength="255"
+                                    placeholder="Введіть опис статті" required>{{article.description}}</textarea>
+                                <div class="invalid-feedback">
+                                    {{errors.description.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="text">Текст статті</label>
+                                <textarea class="form-control {{#if errors.text}}is-invalid{{/if}}"
+                                    id="text" name="text" maxlength="1000"
+                                    placeholder="Введіть текст статті" required>{{article.text}}</textarea>
+                                <div class="invalid-feedback">
+                                    {{errors.text.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Автор</label>
+                                <input type="text" class="form-control {{#if errors.author}}is-invalid{{/if}}"
+                                    id="author" name="author" value="{{article.author}}"
+                                    placeholder="Введіть автора" maxlength="50" required>
+                                <div class="invalid-feedback">
+                                    {{errors.author.msg}}
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Зберегти"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Mobilex</title>
+</head>
+<body>
+    {{> shopHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Товар</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 mb-2">
+                        <h4 class="display-4 text-center">Категорії</h4>
+                        <div class="list-group text-center" id="list-tab" role="tablist">
+                            {{#each categories}}
+                                <a href="/products?category={{this.categoryId}}" class="list-group-item list-group-item-action">{{this.name}}</a>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        {{#unless products}}
+                        <div class="alert alert-secondary text-center" role="alert">
+                            Нема товару
+                        </div>
+                        {{/unless}}
+                        {{#each products}}
+                        <div class="card mb-3">
+                            <div class="row no-gutters">
+                                <div class="col-sm-3">
+                                    <img src="/product-img/{{this.image}}" class="card-img img-thumbnail w-75 h-100" alt="{{this.name}}">
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{this.name}}</h5>
+                                        <p class="card-text">Ціна: {{this.price}} грн</p>
+                                        <button type="button" class="btn btn-success" name="addToCart" value="{{this._id}}">Купити</button>
+                                        <a href="/products/{{this._id}}" class="btn btn-success">Деталі</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+    <script type="text/javascript" src="/js/cart.js"></script>
+</body>
+</html>
