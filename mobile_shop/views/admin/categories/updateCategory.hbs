@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Змінити категорію</title>
+</head>
+<body>
+    {{> adminHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Змінити категорію</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form action="/categories/update" method="POST">
+                            <input type="hidden" name="id" value="{{category._id}}"/>
+                            <input type="hidden" name="categoryId" value="{{category.categoryId}}"/>
+                            <div class="form-group">
+                                <label for="name">Назва категорії</label>
+                                <input type="text" class="form-control {{#if errors.name}}is-invalid{{/if}}"
+                                    id="name" name="name" value="{{category.name}}" maxlength="50"
+                                    placeholder="Введіть назву категорії" required>
+                                <div class="invalid-feedback">
+                                    {{errors.name.msg}}
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Зберегти"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>

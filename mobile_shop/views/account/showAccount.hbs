@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Особистий кабінет</title>
+</head>
+<body>
+    {{> shopHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 mb-2">
+                        <h4 class="display-4 text-center">Меню</h4>
+                        <div class="list-group text-center" id="list-tab" role="tablist">
+                            <a href="/products" class="list-group-item list-group-item-action" id="list-lab1-item">Список товару</a>
+                            <a href="/account/orders" class="list-group-item list-group-item-action" id="list-lab1-item">Історія замовлень</a>
+                            <a href="/account/update" class="list-group-item list-group-item-action" id="list-lab1-item">Оновити дані</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        <div class="text-center">
+                            <h1 class="display-4 col-sm-12">Особистий кабінет</h1>
+                        </div>
+                        <ul class="list-group list-group-flush lead">
+                            <li class="list-group-item">Ім'я: {{session.user.firstName}}</li>
+                            <li class="list-group-item">Прізвище: {{session.user.lastName}}</li>
+                            <li class="list-group-item">День народження: {{formatDate session.user.birthday 'dd.mm.yyyy'}}</li>
+                            <li class="list-group-item">Адреса: {{session.user.address}}</li>
+                            <li class="list-group-item">Телефон: {{session.user.phone}}</li>
+                            <li class="list-group-item">E-mail: {{session.user.email}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Вхід до системи</title>
+</head>
+<body>
+    {{> shopHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Вхід до системи</h1>
+                    {{#if error}}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form action="/login" method="POST">
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" class="form-control"
+                                    id="email" name="email" maxlength="30"
+                                    placeholder="Введіть e-mail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Пароль</label>
+                                <input type="password" class="form-control"
+                                    id="password" name="password" minlength="6" maxlength="30"
+                                    placeholder="Введіть пароль" required>
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Вхід"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+    <script type="text/javascript" src="/js/cart.js"></script>
+</body>
+</html>

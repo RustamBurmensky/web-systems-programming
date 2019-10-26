@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Оновити дані</title>
+</head>
+<body>
+    {{> shopHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Оновити дані</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 mb-2">
+                        <h4 class="display-4 text-center">Меню</h4>
+                        <div class="list-group text-center" id="list-tab" role="tablist">
+                            <a href="/products" class="list-group-item list-group-item-action" id="list-lab1-item">Список товару</a>
+                            <a href="/account" class="list-group-item list-group-item-action" id="list-lab1-item">Особистий кабінет</a>
+                            <a href="/account/orders" class="list-group-item list-group-item-action" id="list-lab1-item">Історія замовлень</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        <form action="/account/update" method="POST">
+                            <div class="form-group">
+                                <label for="firstName">Ім'я</label>
+                                <input type="text" class="form-control {{#if errors.firstName}}is-invalid{{/if}}"
+                                    id="firstName" name="firstName" value="{{session.user.firstName}}" maxlength="30"
+                                    placeholder="Введіть ім'я" required>
+                                <div class="invalid-feedback">
+                                    {{errors.firstName.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Прізвище</label>
+                                <input type="text" class="form-control {{#if errors.lastName}}is-invalid{{/if}}"
+                                    id="lastName" name="lastName" value="{{session.user.lastName}}" maxlength="30"
+                                    placeholder="Введіть прізвище" required/>
+                                <div class="invalid-feedback">
+                                    {{errors.lastName.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthday">День народження</label>
+                                <input type="date" class="form-control {{#if errors.birthday}}is-invalid{{/if}}"
+                                    id="birthday" name="birthday" value="{{formatDate session.user.birthday 'yyyy-mm-dd'}}"
+                                    placeholder="Введіть день народження" required/>
+                                <div class="invalid-feedback">
+                                    {{errors.birthday.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Адреса</label>
+                                <input type="text" class="form-control {{#if errors.address}}is-invalid{{/if}}"
+                                    id="address" name="address" value="{{session.user.address}}" maxlength="100"
+                                    placeholder="Введіть адресу" required>
+                                <div class="invalid-feedback">
+                                    {{errors.address.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Телефон</label>
+                                <input type="tel" class="form-control {{#if errors.phone}}is-invalid{{/if}}"
+                                    id="phone" name="phone" value="{{session.user.phone}}" maxlength="20"
+                                    placeholder="Введіть телефон" required>
+                                <div class="invalid-feedback">
+                                    {{errors.phone.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" class="form-control {{#if errors.email}}is-invalid{{/if}}"
+                                    id="email" name="email" value="{{session.user.email}}" maxlength="30"
+                                    placeholder="Введіть e-mail" required>
+                                <div class="invalid-feedback">
+                                    {{errors.email.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Пароль</label>
+                                <input type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}"
+                                    id="password" name="password" value="{{session.user.password}}" minlength="6" maxlength="30"
+                                    placeholder="Введіть пароль" required>
+                                <div class="invalid-feedback">
+                                    {{errors.password.msg}}
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Підтвердити"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+    <script type="text/javascript" src="/js/cart.js"></script>
+</body>
+</html>

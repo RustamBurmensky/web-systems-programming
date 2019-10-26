@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Блог</title>
+</head>
+<body>
+    {{> header}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Блог</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{#unless articles}}
+                        <div class="alert alert-secondary text-center" role="alert">
+                            Нема статей
+                        </div>
+                        {{/unless}}
+                        {{#each articles}}
+                        <div class="card mb-2">
+                            <h5 class="card-header text-white bg-dark">{{this.title}}</h5>
+                            <div class="card-body">
+                                <p class="card-text">{{this.description}}</p>
+                                <a href="/articles/show/{{this._id}}" class="btn btn-success">Далі</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 text-md-left">
+                                        {{this.author}}
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 text-md-right">
+                                        {{formatDate this.date 'dd.mm.yyyy HH:MM:ss'}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Додати товар</title>
+</head>
+<body>
+    {{> adminHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Додати товар</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form action="/products/create" enctype="multipart/form-data" method="POST">
+                            <div class="form-group">
+                                <label for="name">Назва товару</label>
+                                <input type="text" class="form-control {{#if errors.name}}is-invalid{{/if}}"
+                                    id="name" name="name" value="{{product.name}}" maxlength="100"
+                                    placeholder="Введіть назву товару" required>
+                                <div class="invalid-feedback">
+                                    {{errors.name.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Опис товару</label>
+                                <textarea class="form-control {{#if errors.description}}is-invalid{{/if}}"
+                                    id="description" name="description" maxlength="1000"
+                                    placeholder="Введіть опис товару" required>{{product.description}}</textarea>
+                                <div class="invalid-feedback">
+                                    {{errors.description.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Ціна товару, грн</label>
+                                <input type="number" class="form-control {{#if errors.price}}is-invalid{{/if}}"
+                                    id="price" name="price" value="{{product.price}}" min="1.0" step="0.01"
+                                    placeholder="Введіть ціну товару, грн" required>
+                                <div class="invalid-feedback">
+                                    {{errors.price.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="manufacturer">Виробник</label>
+                                <input type="text" class="form-control {{#if errors.manufacturer}}is-invalid{{/if}}"
+                                    id="manufacturer" name="manufacturer" value="{{product.manufacturer}}" maxlength="50"
+                                    placeholder="Введіть виробника" required>
+                                <div class="invalid-feedback">
+                                    {{errors.manufacturer.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Оберіть фото товару</label>
+                                <input type="file" class="form-control-file {{#if errors.image}}is-invalid{{/if}}"
+                                    id="image" name="image" accept="image/jpeg,image/png">
+                                <div class="invalid-feedback">
+                                    {{errors.image.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="categoryId">Категорія</label>
+                                <select id="categoryId" name="categoryId" class="custom-select">
+                                    {{#each categories}}
+                                        <option value="{{this.categoryId}}" {{#ifEquals product.categoryId this.categoryId}}selected{{/ifEquals}}>{{this.name}}</option>
+                                    {{/each}}
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{errors.categoryId.msg}}
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Зберегти"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>

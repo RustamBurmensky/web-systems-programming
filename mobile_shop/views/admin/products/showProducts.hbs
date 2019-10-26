@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <link rel="stylesheet" href="/css/product-table.css"/>
+    <title>Товар</title>
+</head>
+<body>
+    {{> adminHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Товар</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="mb-2">
+                            <a href="/products/create" class="btn btn-success">Додати товар</a>
+                        </div>
+                        {{#if products}}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="product-photo-td">Фото</th>
+                                    <th>Назва</th>
+                                    <th>Ціна, грн</th>
+                                    <th>Змінити</th>
+                                    <th>Видалити</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each products}}
+                                    <tr>
+                                        <td>
+                                            {{#if this.image}}
+                                                <img src="/product-img/{{this.image}}" class="w-25" alt="{{this.name}}">
+                                            {{else}}
+                                                <img src="/img/no_img_avaliable.jpg" class="w-25" alt="{{this.name}}">
+                                            {{/if}}
+                                        </td>
+                                        <td>{{this.name}}</td>
+                                        <td>{{this.price}}</td>
+                                        <td>
+                                            <a href="/products/update/{{this._id}}" class="btn btn-success text-white p-1">
+                                                <i class="material-icons">edit</i>
+                                            </a> 
+                                        </td>
+                                        <td>
+                                            <form action="/products/delete" method="POST">
+                                                <input type="hidden" name="id" value="{{this._id}}"/>
+                                                <button type="submit" class="btn btn-danger text-white p-1">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        {{else}}
+                        <div class="alert alert-secondary text-center" role="alert">
+                            Нема товару
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>{{product.name}}</title>
+</head>
+<body>
+    {{> shopHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3 mb-2">
+                        <h4 class="display-4 text-center">Меню</h4>
+                        <div class="list-group text-center" id="list-tab" role="tablist">
+                            <a href="/products" class="list-group-item list-group-item-action" id="list-lab1-item">Список товару</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-9">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4 text-center">
+                                {{#if product.image}}
+                                    <img src="/product-img/{{product.image}}" class="card-img img-thumbnail w-100" alt="{{product.name}}">
+                                {{else}}
+                                    <img src="/img/no_img_avaliable.jpg" class="card-img img-thumbnail w-100" alt="{{product.name}}">
+                                {{/if}}
+                            </div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="text-center">
+                                    <h1 class="col-sm-12">{{product.name}}</h1>
+                                </div>
+                                <p class="lead">{{product.description}}</p>
+                                <p class="lead">Виробник: {{product.manufacturer}}</p>
+                                <p class="alert alert-success">
+                                    <button type="button" class="btn btn-success" name="addToCart" value="{{product._id}}">Купити</button>
+                                    Ціна: {{product.price}} грн
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+    <script type="text/javascript" src="/js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Зробити замовлення</title>
+</head>
+<body>
+    {{> shopHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Зробити замовлення</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Назва</th>
+                                    <th>Ціна, грн</th>
+                                    <th>Кількість</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each session.cartContent}}
+                                    <tr>
+                                        <td>{{this.product.name}}</td>
+                                        <td>{{this.product.price}}</td>
+                                        <td>{{this.count}}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        <div class="text-right">
+                            <p class="lead">
+                                До оплати: <strong>{{getTotalCartPrice session.cartContent}} грн</strong>
+                            </p>
+                        </div>
+                        <form action="/order/place" method="POST">
+                            <div class="form-group">
+                                <label for="firstName">Ім'я отримувача</label>
+                                <input type="text" class="form-control {{#if errors.firstName}}is-invalid{{/if}}"
+                                    id="firstName" name="firstName" value="{{order.firstName}}" maxlength="30"
+                                    placeholder="Введіть ім'я" required>
+                                <div class="invalid-feedback">
+                                    {{errors.firstName.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Прізвище отримувача</label>
+                                <input type="text" class="form-control {{#if errors.lastName}}is-invalid{{/if}}"
+                                    id="lastName" name="lastName" value="{{order.lastName}}" maxlength="30"
+                                    placeholder="Введіть прізвище" required/>
+                                <div class="invalid-feedback">
+                                    {{errors.lastName.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Адреса доставки</label>
+                                <input type="text" class="form-control {{#if errors.address}}is-invalid{{/if}}"
+                                    id="address" name="address" value="{{order.address}}" maxlength="100"
+                                    placeholder="Введіть адресу" required>
+                                <div class="invalid-feedback">
+                                    {{errors.address.msg}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Контактний телефон</label>
+                                <input type="tel" class="form-control {{#if errors.phone}}is-invalid{{/if}}"
+                                    id="phone" name="phone" value="{{order.phone}}" maxlength="20"
+                                    placeholder="Введіть телефон" required>
+                                <div class="invalid-feedback">
+                                    {{errors.phone.msg}}
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Підтвердити"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>

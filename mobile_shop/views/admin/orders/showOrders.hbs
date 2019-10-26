@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <link rel="stylesheet" href="/css/product-table.css"/>
+    <title>Замовлення</title>
+</head>
+<body>
+    {{> adminHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Замовлення</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{#if orders}}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Код</th>
+                                    <th>Дата замовлення</th>
+                                    <th>Ім'я отримувача</th>
+                                    <th>Контактний телефон</th>
+                                    <th>Статус</th>
+                                    <th>Змінити</th>
+                                    <th>Видалити</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each orders}}
+                                    <tr>
+                                        <td>{{this._id}}</td>
+                                        <td>{{formatDate this.date 'dd.mm.yyyy'}}</td>
+                                        <td>{{this.lastName}} {{this.firstName}}</td>
+                                        <td>{{this.phone}}</td>
+                                        <td>{{getOrderStatusLabel this.status}}</td>
+                                        <td>
+                                            <a href="/orders/update/{{this._id}}" class="btn btn-success text-white p-1">
+                                                <i class="material-icons">edit</i>
+                                            </a> 
+                                        </td>
+                                        <td>
+                                            <form action="/orders/delete" method="POST">
+                                                <input type="hidden" name="id" value="{{this._id}}"/>
+                                                <button type="submit" class="btn btn-danger text-white p-1">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        {{else}}
+                        <div class="alert alert-secondary text-center" role="alert">
+                            Нема замовлень
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>
