@@ -1,3 +1,6 @@
+/*
+    Модуль orderStatus.js зберігає можливі статуси замовлення
+*/
 module.exports = {
     ACCEPTED: {value: 'ACCEPTED', label: 'Прийнято'},
     PROCESSING: {value: 'PROCESSING', label: 'Обробляється'},

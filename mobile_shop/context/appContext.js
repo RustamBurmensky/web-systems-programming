@@ -1,3 +1,8 @@
+/*
+    Модуль контексту веб-додатку appContext.js.
+    Представляє собою модуль для зберігання посилань на об'єкти сервіс-класів.
+    Ініціалізує сервіси веб-додатку та базу даних (за необхідністю).
+*/
 const dbManager = require('../db/dbManager');
 const DbInitializer = require('../db/dbInitializer').DbInitializer;
 const ArticleDAO = require('../dao/articleDAO').ArticleDAO;

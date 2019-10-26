@@ -1,3 +1,6 @@
+/*
+    Клас-менеджер для з'єднання з БД dbManager.js
+*/
 const MongoClient = require('mongodb').MongoClient;
 const config = require('../config');
 

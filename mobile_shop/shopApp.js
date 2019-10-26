@@ -228,18 +228,4 @@ app.use((err, req, res, next) => {
     res.status(500).send('500 - Internal Server Error');
 });
 
-hbs.registerHelper('getCartTotalCount', (cartContent) => {
-    const cart = new Cart(cartContent);
-    return cart.getTotalCount();
-});
-
-hbs.registerHelper('getTotalCartPrice', (cartContent) => {
-    const cart = new Cart(cartContent);
-    return cart.getTotalCartPrice();
-});
-
-hbs.registerHelper('getOrderStatusLabel', (item) => {
-    return orderStatus[item].label;
-});
-
 module.exports.app = app;

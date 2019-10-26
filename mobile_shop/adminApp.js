@@ -365,14 +365,4 @@ app.use((err, req, res, next) => {
     res.status(500).send('500 - Internal Server Error');
 });
 
-// Реєстрація helper-функцій Handlebars
-hbs.registerHelper('getOrderStatusLabel', (item) => {
-    return orderStatus[item].label;
-});
-
-hbs.registerHelper('ifEquals', (first, second, options) => {
-    return (first === second) ?
-        options.fn(this) : options.inverse(this);
-});
-
 module.exports.app = app;
