@@ -28,15 +28,17 @@ class ProductDAO {
 
     update(product) {
         const objectId = new ObjectID(product._id);
+        const fieldsToUpdate = {
+            'name': product.name, 'description': product.description,
+            'price': product.price, 'manufacturer': product.manufacturer,
+            'categoryId': product.categoryId
+        };
+        if (product.image) {
+            fieldsToUpdate.image = product.image;
+        }
         this.collection.updateOne(
             {_id: objectId},
-            {
-                $set: {
-                    'name': product.name, 'description': product.description,
-                    'price': product.price, 'manufacturer': product.manufacturer,
-                    'image': product.image, 'categoryId': product.categoryId, 
-                }
-            }
+            {$set: fieldsToUpdate}
         );
     }
 

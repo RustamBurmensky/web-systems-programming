@@ -7,5 +7,9 @@
             "useNewUrlParser": true,
             "useUnifiedTopology": true
         }
+    },
+    "adminPanel": {
+        "login": "admin",
+        "password": "mobile"
     }
 }

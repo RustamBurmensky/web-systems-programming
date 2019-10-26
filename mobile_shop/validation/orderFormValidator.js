@@ -2,6 +2,7 @@
     Модуль валідації полів HTML-форми для замовлення orderFormValidator.js
 */
 const {check} = require('express-validator');
+const orderStatus = require('../enum/orderStatus');
 
 module.exports.fieldValidators = [
     check('firstName')
@@ -17,3 +18,12 @@ module.exports.fieldValidators = [
         .not().isEmpty().withMessage('Вкажіть контактний телефон')
         .isMobilePhone('uk-UA').withMessage('Вкажіть валідний номер мобільного телефону')
 ];
+
+module.exports.updateOrderFieldValidators = [
+    ...this.fieldValidators,
+    check('status')
+        .not().isEmpty().withMessage('Вкажіть статус замовлення')
+        .custom((status) => {
+            return (orderStatus[status]) ? Promise.resolve() : Promise.reject();
+        }).withMessage('Вказано невірний статус замовлення')
+]

@@ -40,7 +40,16 @@ const uniqueEmailValidator = check('email')
 const accountUpdateUniqueEmailValidator = check('email')
     .custom((email, {req}) => {
         return userService.findByEmail(email).then(user => {
-            if (user._id != req.session.user._id) {
+            if (user && user._id != req.session.user._id) {
+                return Promise.reject()
+            }
+        })
+    }).withMessage('Вже існує аккаунт з таким e-mail');
+
+const userUpdateUniqueEmailValidator = check('email')
+    .custom((email, {req}) => {
+        return userService.findByEmail(email).then(user => {
+            if (user && user._id != req.body.id) {
                 return Promise.reject()
             }
         })
@@ -54,4 +63,9 @@ module.exports.registrationFieldValidators = [
 module.exports.updateAccountFieldValidators = [
     ...fieldValidators,
     accountUpdateUniqueEmailValidator
+];
+
+module.exports.updateUserFieldValidators = [
+    ...fieldValidators,
+    userUpdateUniqueEmailValidator
 ];

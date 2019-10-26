@@ -14,6 +14,7 @@ dbManager.connect((err) => {
         console.error(err);
     } else {
         express().use(vhost('blog.mobilex.com', require('./blogApp').app))
+            .use(vhost('admin.mobilex.com', require('./adminApp').app))
             .use(vhost('mobilex.com', require('./shopApp').app)).listen(config.port, () => {
             console.log('Node.js server listen on port', config.port);
         });

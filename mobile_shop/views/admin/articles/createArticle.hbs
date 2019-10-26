@@ -2,26 +2,19 @@
 <html lang="en">
 <head>
     {{> head}}
-    <title>Редагувати статтю</title>
+    <title>Додати статтю</title>
 </head>
 <body>
-    {{> header}}
+    {{> adminHeader}}
     <main>
         <div class="container">
             <div class="justify-content-center">
 				<div class="text-center">
-					<h1 class="display-3 col-sm-12">Редагувати статтю</h1>
+					<h1 class="display-3 col-sm-12">Додати статтю</h1>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-4 mb-2">
-                        <h4 class="display-4 text-center">Меню</h4>
-                        <div class="list-group text-center" id="list-tab" role="tablist">
-                            <a href="/articles" class="list-group-item list-group-item-action">Статті</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-8">
-                        <form action="/articles/update" method="POST">
-                            <input type="hidden" name="id" value="{{article._id}}"/>
+                    <div class="col-sm-12">
+                        <form action="/articles/create" method="POST">
                             <div class="form-group">
                                 <label for="title">Заголовок статті</label>
                                 <input type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}"
@@ -52,8 +45,8 @@
                             <div class="form-group">
                                 <label for="author">Автор</label>
                                 <input type="text" class="form-control {{#if errors.author}}is-invalid{{/if}}"
-                                    id="author" name="author" value="{{article.author}}"
-                                    placeholder="Введіть автора" maxlength="50" required>
+                                    id="author" name="author" value="{{article.author}}" maxlength="50"
+                                    placeholder="Введіть автора" required>
                                 <div class="invalid-feedback">
                                     {{errors.author.msg}}
                                 </div>

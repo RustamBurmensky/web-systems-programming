@@ -30,8 +30,12 @@
                         {{#each products}}
                         <div class="card mb-3">
                             <div class="row no-gutters">
-                                <div class="col-sm-3">
-                                    <img src="/product-img/{{this.image}}" class="card-img img-thumbnail w-75 h-100" alt="{{this.name}}">
+                                <div class="col-sm-3 text-center">
+                                    {{#if this.image}}
+                                        <img src="/product-img/{{this.image}}" class="card-img img-thumbnail w-75" alt="{{this.name}}">
+                                    {{else}}
+                                        <img src="/img/no_img_avaliable.jpg" class="card-img img-thumbnail w-75" alt="{{this.name}}">
+                                    {{/if}}
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="card-body">

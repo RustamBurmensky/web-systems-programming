@@ -1,6 +1,7 @@
 /*
     Модуль сервісного шару для роботи з товаром
 */
+
 class CategoryService {
 
     constructor(categoryDAO) {

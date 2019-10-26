@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+    <title>Статті</title>
+</head>
+<body>
+    {{> adminHeader}}
+    <main>
+        <div class="container">
+            <div class="justify-content-center">
+				<div class="text-center">
+					<h1 class="display-3 col-sm-12">Статті (блог)</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="mb-2">
+                            <a href="/articles/create" class="btn btn-success">Додати статтю</a>
+                        </div>
+                        {{#if articles}}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Назва</th>
+                                    <th>Автор</th>
+                                    <th>Дата публікації</th>
+                                    <th>Змінити</th>
+                                    <th>Видалити</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each articles}}
+                                    <tr>
+                                        <td>{{this.title}}</td>
+                                        <td>{{this.author}}</td>
+                                        <td>{{formatDate this.date 'dd.mm.yyyy HH:MM:ss'}}</td>
+                                        <td>
+                                            <a href="/articles/update/{{this._id}}" class="btn btn-success text-white p-1">
+                                                <i class="material-icons">edit</i>
+                                            </a> 
+                                        </td>
+                                        <td>
+                                            <form action="/articles/delete" method="POST">
+                                                <input type="hidden" name="id" value="{{this._id}}"/>
+                                                <button type="submit" class="btn btn-danger text-white p-1">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        {{else}}
+                        <div class="alert alert-secondary text-center" role="alert">
+                            Нема статей
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer}}
+</body>
+</html>

@@ -18,15 +18,23 @@
                     </div>
                     <div class="col-sm-12 col-md-9">
                         <div class="row">
-                            <div class="col-sm-12 col-md-4">
-                                <img src="/product-img/{{product.image}}" class="w-100 h-100" alt="{{product.name}}">
+                            <div class="col-sm-12 col-md-4 text-center">
+                                {{#if product.image}}
+                                    <img src="/product-img/{{product.image}}" class="card-img img-thumbnail w-100" alt="{{product.name}}">
+                                {{else}}
+                                    <img src="/img/no_img_avaliable.jpg" class="card-img img-thumbnail w-100" alt="{{product.name}}">
+                                {{/if}}
                             </div>
                             <div class="col-sm-12 col-md-8">
                                 <div class="text-center">
                                     <h1 class="col-sm-12">{{product.name}}</h1>
                                 </div>
                                 <p class="lead">{{product.description}}</p>
-                                <p class="alert alert-success">Ціна: {{product.price}} грн</p>
+                                <p class="lead">Виробник: {{product.manufacturer}}</p>
+                                <p class="alert alert-success">
+                                    <button type="button" class="btn btn-success" name="addToCart" value="{{product._id}}">Купити</button>
+                                    Ціна: {{product.price}} грн
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -35,5 +43,6 @@
         </div>
     </main>
     {{> footer}}
+    <script type="text/javascript" src="/js/cart.js"></script>
 </body>
 </html>

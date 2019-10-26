@@ -1,6 +1,8 @@
 /*
     Модуль авторизації користувача
 */
+const config = require('../config');
+
 class LoginProvider {
 
     constructor(userService) {
@@ -11,6 +13,11 @@ class LoginProvider {
         this.userService.findByEmail(email).then(user => {
             callback(user.password === password);
         });
+    }
+
+    authorizeAdmin(login, password) {
+        return login === config.adminPanel.login &&
+            password === config.adminPanel.password;
     }
 
 }

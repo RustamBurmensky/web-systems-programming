@@ -25,10 +25,7 @@ const orderService = new OrderService(orderDao);
 
 const loginProvider = new LoginProvider(userService);
 
-const dbInitializer = new DbInitializer(articleService);
-dbInitializer.initializeIfNeeded();
-
-module.exports = {
+const context = {
     articleService,
     categoryService,
     productService,
@@ -36,3 +33,8 @@ module.exports = {
     orderService,
     loginProvider
 }
+
+const dbInitializer = new DbInitializer(dbManager, context);
+dbInitializer.initializeIfNeeded();
+
+module.exports = context;
